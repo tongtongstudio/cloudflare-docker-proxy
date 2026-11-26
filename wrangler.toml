@@ -6,15 +6,19 @@ ip = "0.0.0.0"
 port = 8787
 local_protocol = "http"
 
+[env.vars]
+CUSTOM_DOMAIN = "ttdock.com"
+
 [env.dev.vars]
 MODE = "debug"
 TARGET_UPSTREAM = "https://registry-1.docker.io"
+CUSTOM_DOMAIN = "exmaple.com"
 
 [env.production]
 name = "cloudflare-docker-proxy"
 routes = [
   { pattern = "docker.ttdock.com", custom_domain = true },
-  { pattern = "quey.ttdock.com", custom_domain = true },
+  { pattern = "quay.ttdock.com", custom_domain = true },
   { pattern = "gcr.ttdock.com", custom_domain = true },
   { pattern = "k8s-gcr.ttdock.com", custom_domain = true },
   { pattern = "k8s.ttdock.com", custom_domain = true },
@@ -25,6 +29,7 @@ routes = [
 [env.production.vars]
 MODE = "production"
 TARGET_UPSTREAM = ""
+CUSTOM_DOMAIN = "ttdock.com"
 
 [env.staging]
 name = "cloudflare-docker-proxy-staging"
@@ -33,3 +38,4 @@ route = { pattern = "docker-staging.ttdock.com", custom_domain = true }
 [env.staging.vars]
 MODE = "staging"
 TARGET_UPSTREAM = ""
+CUSTOM_DOMAIN = "ttdock.com"
